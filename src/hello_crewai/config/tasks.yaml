@@ -1,0 +1,38 @@
+testar_site:
+  agent: exploratory_tester
+  description: >
+    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
+    Navegue por todas as páginas, identifique bugs, falhas de navegação e sugira melhorias de usabilidade.
+  expected_output: >
+    Lista detalhada dos bugs encontrados, falhas de navegação e sugestões de melhorias de usabilidade.
+
+avaliar_acessibilidade:
+  agent: accessibility_analyst
+  description: >
+    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
+    Avalie a acessibilidade do site, identifique barreiras e sugira melhorias para garantir inclusão digital.
+  expected_output: >
+    Relatório com os principais problemas de acessibilidade encontrados e sugestões de correção.
+
+auditar_performance:
+  agent: performance_auditor
+  description: >
+    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
+    Analise a performance do site, identifique gargalos e sugira otimizações.
+  expected_output: >
+    Lista dos principais gargalos de performance e recomendações de otimização.
+
+verificar_seguranca:
+  agent: security_checker
+  description: >
+    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
+    Verifique vulnerabilidades de segurança e sugira correções.
+  expected_output: >
+    Relatório das vulnerabilidades encontradas e sugestões de correção.
+
+documentar_relatorio:
+  agent: documentation_specialist
+  description: >
+    Compile todos os achados dos outros agentes em um relatório claro e objetivo para apresentação na reunião de Status Report.
+  expected_output: >
+    Relatório final em markdown, organizado por tópicos, pronto para apresentação.
