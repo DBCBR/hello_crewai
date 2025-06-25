@@ -2,7 +2,7 @@
 # Relatório de Status - Avaliação do Site de Convênios (Ambiente Release)
 
 **Data:** [Inserir Data da Reunião]
-**Avaliação Baseada em:** Análise exploratória com credenciais (`550.140.463-04`/`admin123`), complementada por avaliações contextuais de Acessibilidade, Performance e Segurança.
+**Avaliação Baseada em:** Análise exploratória com credenciais, complementada por avaliações contextuais de Acessibilidade, Performance e Segurança.
 **Escopo:** Identificação de bugs, falhas de navegação, barreiras de acessibilidade, potenciais gargalos de performance e riscos de segurança baseados nas descrições fornecidas.
 
 ---
@@ -96,7 +96,7 @@ Este relatório compila os achados de uma avaliação inicial do ambiente releas
 ### 3.4. Segurança
 
 *   **CRÍTICO: Alteração Urgente da Senha Padrão:**
-    *   A senha 'admin123' é extremamente insegura. Deve ser alterada imediatamente para uma senha forte e única.
+    *   A senha '######' é extremamente insegura. Deve ser alterada imediatamente para uma senha forte e única.
 *   **Fortalecimento do Controle de Acesso e Autorização (Prevenção IDOR):**
     *   Implementar verificações rigorosas no backend para garantir que usuários autenticados só acessem dados aos quais possuem permissão explícita, especialmente ao buscar dados por ID.
     *   Evitar exposição de IDs sequenciais na URL.
