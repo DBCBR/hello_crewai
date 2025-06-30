@@ -1,38 +1,86 @@
 testar_site:
   agent: exploratory_tester
   description: >
-    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
-    Navegue por todas as páginas, identifique bugs, falhas de navegação e sugira melhorias de usabilidade.
+    Realize uma exploração completa em TODO o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
+    Teste todas as abas, menus, submenus, botões, campos de pesquisa, formulários, tabelas, filtros, paginação e funcionalidades disponíveis.
+    Execute operações de CRUD (criar, ler, atualizar, excluir) em todos os módulos possíveis, validando mensagens de sucesso e erro.
+    Teste fluxos alternativos, entradas inválidas, campos obrigatórios, limites de caracteres e comportamentos inesperados.
+    Registre todos os bugs, falhas de navegação, inconsistências, comportamentos inesperados e pontos de melhoria de usabilidade.
+    Não deixe nenhuma funcionalidade sem testar.
   expected_output: >
-    Lista detalhada dos bugs encontrados, falhas de navegação e sugestões de melhorias de usabilidade.
+    Relatório detalhado com todos os bugs, falhas, inconsistências, sugestões de melhoria e evidências (passos para reprodução, prints, etc) encontrados em todas as funcionalidades do site.
 
 avaliar_acessibilidade:
   agent: accessibility_analyst
   description: >
-    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
-    Avalie a acessibilidade do site, identifique barreiras e sugira melhorias para garantir inclusão digital.
+    Avalie a acessibilidade de TODO o site ${QA_SITE_URL}, incluindo todas as páginas, formulários, tabelas, menus, botões e campos de pesquisa.
+    Teste navegação por teclado, leitores de tela, contraste de cores, tamanho de fonte, uso de ARIA, textos alternativos em imagens e responsividade.
+    Identifique barreiras de acesso para pessoas com deficiência e sugira melhorias para garantir inclusão digital total.
   expected_output: >
-    Relatório com os principais problemas de acessibilidade encontrados e sugestões de correção.
+    Relatório com todos os problemas de acessibilidade encontrados, exemplos práticos e sugestões de correção para cada caso.
 
 auditar_performance:
   agent: performance_auditor
   description: >
-    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
-    Analise a performance do site, identifique gargalos e sugira otimizações.
+    Realize testes de performance e esforço em TODO o site ${QA_SITE_URL}.
+    Meça o tempo de carregamento de todas as páginas, execute operações de CRUD em massa, teste com múltiplos acessos simultâneos e avalie o consumo de recursos.
+    Identifique gargalos, lentidão, travamentos, uso excessivo de memória ou CPU e pontos de otimização.
   expected_output: >
-    Lista dos principais gargalos de performance e recomendações de otimização.
+    Relatório com métricas de performance, resultados dos testes de esforço, principais gargalos e recomendações de otimização.
 
 verificar_seguranca:
   agent: security_checker
   description: >
-    Acesse o site ${QA_SITE_URL} usando o login ${QA_SITE_LOGIN} e senha ${QA_SITE_PASSWORD}.
-    Verifique vulnerabilidades de segurança e sugira correções.
+    Realize uma análise completa de segurança em TODO o site ${QA_SITE_URL}.
+    Teste autenticação, permissões, tentativas de acesso não autorizado, injeção de dados, XSS, CSRF, exposição de dados sensíveis, força bruta e logout.
+    Verifique se senhas e dados sensíveis estão protegidos e se há vulnerabilidades conhecidas.
   expected_output: >
-    Relatório das vulnerabilidades encontradas e sugestões de correção.
+    Relatório detalhado das vulnerabilidades encontradas, riscos potenciais e sugestões de correção.
 
 documentar_relatorio:
   agent: documentation_specialist
   description: >
-    Compile todos os achados dos outros agentes em um relatório claro e objetivo para apresentação na reunião de Status Report.
+    Compile todos os achados dos outros agentes em um relatório final claro, objetivo e completo, pronto para apresentação na reunião de Status Report.
+    O relatório deve conter um sumário executivo, seções para cada tipo de teste, listas de bugs, falhas, sugestões de melhoria, evidências e recomendações para liberação do site ao usuário.
   expected_output: >
-    Relatório final em markdown, organizado por tópicos, pronto para apresentação.
+    Relatório final em markdown, organizado por tópicos, com sumário executivo, pronto para apresentação.
+
+documentar_relatorio_xml:
+  agent: documentation_specialist
+  description: >
+    Compile todos os achados dos outros agentes em um relatório final detalhado, pronto para apresentação na reunião de Status Report.
+    O relatório deve ser gerado em formato XML, contendo seções claras para cada tipo de teste (QA, acessibilidade, performance, segurança), com listas de bugs, falhas, sugestões de melhoria, evidências e recomendações.
+    Estruture o XML com seções claras, campos para cada informação relevante e garanta que possa ser importado em planilhas ou sistemas automatizados.
+  expected_output: >
+    Relatório final em XML, com seções organizadas, pronto para importação em Excel ou VBA.
+  output_file: relatorio.xml
+  xml_template: |
+    <Relatorio>
+      {% for bug in bugs %}
+      <Bug ID="{{bug.id}}" Area="{{bug.area}}" Impacto="{{bug.impacto}}">
+        <Descricao>{{bug.descricao | e}}</Descricao>
+        <PassosReproducao>{{bug.passos_reproducao | e}}</PassosReproducao>
+        <ComportamentoEsperado>{{bug.comportamento_esperado | e}}</ComportamentoEsperado>
+      </Bug>
+      {% endfor %}
+      {% for sugestao in sugestoes %}
+      <Sugestao ID="{{sugestao.id}}" Area="{{sugestao.area}}">
+        <Descricao>{{sugestao.descricao | e}}</Descricao>
+      </Sugestao>
+      {% endfor %}
+      {% for inconsistencia in inconsistencias %}
+      <Inconsistencia ID="{{inconsistencia.id}}" Area="{{inconsistencia.area}}" Impacto="{{inconsistencia.impacto}}">
+        <Descricao>{{inconsistencia.descricao | e}}</Descricao>
+        <PassosReproducao>{{inconsistencia.passos_reproducao | e}}</PassosReproducao>
+        <ComportamentoEsperado>{{inconsistencia.comportamento_esperado | e}}</ComportamentoEsperado>
+      </Inconsistencia>
+      {% endfor %}
+      {% for vulnerabilidade in vulnerabilidades %}
+      <Vulnerabilidade ID="{{vulnerabilidade.id}}" Area="{{vulnerabilidade.area}}" Risco="{{vulnerabilidade.risco}}">
+        <Descricao>{{vulnerabilidade.descricao | e}}</Descricao>
+        <Detalhes>{{vulnerabilidade.detalhes | e}}</Detalhes>
+        <Sugestao>{{vulnerabilidade.sugestao | e}}</Sugestao>
+      </Vulnerabilidade>
+      {% endfor %}
+    </Relatorio>
+
